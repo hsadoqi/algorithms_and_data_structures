@@ -26,20 +26,17 @@ function countdown(num){
 // factorial(2) => 2 * 1
 // factorial(1) => 1
 
+// let memo = {}
 
-function factorial(n){
-    // base case
-    if(n === 1){
-        return 1
-    }
+// function factorial(n){
+//     if (n in memo) return memo[n]
+//     if(n === 1) return 1
 
-    // 5 * 24
-    // 4 * 6
-    // 3 * 2
-    // 2 * 1
-    return n * factorial(n - 1)
+//     memo[n] = n * factorial(n - 1)
+//     return memo[n]
+// }
 
-}
+// console.log(factorial(50))
 
 // fibonacci
 // 1, 1, 2, 3, 5, 8, 13, 21
@@ -57,13 +54,30 @@ function fibonacci(n){
     }
 
     return fibonacci(n - 2) + fibonacci(n - 1)
-
 }
 
-console.log(fibonacci(1))
-console.log(fibonacci(3))
-console.log(fibonacci(4))
-console.log(fibonacci(7))
+let memo = {}
+
+function anotherFib(n){
+    if (n in memo) return memo[n]
+    if(n === 1 || n === 2) return 1 
+
+    memo[n] = anotherFib(n - 2) + anotherFib(n -1)
+    return memo[n]
+}
+console.log(anotherFib(10))
+console.log(anotherFib(500))
+console.log(memo)
+
+
+
+
+
+
+console.log(fibonacci(50))
+// console.log(fibonacci(3))
+// console.log(fibonacci(4))
+// console.log(fibonacci(7))
 
 // Write a function, lucasNumber(n), that takes in a number.
 // The function should return the n-th number of the Lucas Sequence.
